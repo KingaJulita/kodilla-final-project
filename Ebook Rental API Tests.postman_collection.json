@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "f3a68ccb-590f-4fcf-aa4b-223723775a15",
+		"name": "Ebook Rental API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38091267"
+	},
+	"item": [
+		{
+			"name": "Login/Registration for New User",
+			"item": [
+				{
+					"name": "User Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Bobby\",\r\n  \"lastName\": \"Singer\",\r\n  \"email\": \"bobby.singer@example.com\",\r\n  \"password\": \"securePassword789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/user/register",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Existing User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"jan.kowalski@example.com\",\r\n  \"password\": \"securePassword123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/user/login",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login with Incorrect Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"jan.kowalski@example.com\",\r\n  \"password\": \"wrongPassword\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/user/login",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Registration with Existing Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Jan\",\r\n    \"lastName\": \"Kowalski\",\r\n    \"email\": \"jan.kowalski@example.com\",\r\n    \"password\": \"securePassword123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/user/register",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration with Too Short Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Dean\",\r\n  \"lastName\": \"Winchester\",\r\n  \"password\": \"123\",\r\n  \"email\": \"dean.winchester@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/user/register",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List of Titles",
+			"item": [
+				{
+					"name": "Displaying List of Titles for Logged-in User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6ff885a7a6ddea50873ed55bfcdd70149129e847b469bb5afb2dd8c321eb67cd",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/?userId=1",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding a New Title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Archiwum Burzowego Światła\",\r\n  \"author\": \"Brandon Sanderson\",\r\n  \"year\": 2024,\r\n  \"userId\": 319\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting a Title",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/?userId=319&id=381",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "319"
+								},
+								{
+									"key": "id",
+									"value": "381"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List of Copies",
+			"item": [
+				{
+					"name": "Displaying List of Copies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/items/?userId=1&titleId=2",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"items",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "titleId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding a Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titleId\": 2,\r\n  \"purchaseDate\": \"2024-10-10\",\r\n  \"status\": \"Available\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/items/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"items",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editing a Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titleId\": 385,\r\n  \"userId\": 1,\r\n  \"purchaseDate\": \"2024-10-10\",\r\n  \"status\": \"Rented\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/items/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"items",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List of Rentals",
+			"item": [
+				{
+					"name": "Displaying List of Rentals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/?userId=1&itemId=2",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "itemId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding a Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Jan\",\r\n  \"lastName\" : \"Kowalski\",\r\n  \"rentalDate\": \"2024-10-10\",\r\n  \"expirationDate\": \"2024-10-17\",\r\n  \"itemId\": 386,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting a Rental",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/?userId=1&id=386",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "id",
+									"value": "386"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental",
+			"item": [
+				{
+					"name": "Creating a New Rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Jan Kowalski\",\r\n  \"rentalDate\": \"2024-10-10\",\r\n  \"expirationDate\": \"2024-10-17\",\r\n  \"itemId\": 2,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attempting Rental with Invalid Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"\",\r\n  \"rentalDate\": \"2024-10-10\",\r\n  \"expirationDate\": \"2024-10-17\",\r\n  \"itemId\": 2,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attempting Rental with Nonexistent Title ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Jan Kowalski\",\r\n  \"rentDate\": \"2024-10-10\",\r\n  \"expirationDate\": \"2024-10-17\",\r\n  \"itemId\": 9999,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attempting Rental After Expiration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Jan\",\r\n  \"lastName\": \"Kowalski\",\r\n  \"rentalDate\": \"2024-10-10\",\r\n  \"expirationDate\": \"2024-10-05\",\r\n  \"itemId\": 386,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/rents/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"rents",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Adding Books to Repository",
+			"item": [
+				{
+					"name": "Adding \"Dune\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Dune\",\r\n  \"author\": \"Frank Herbert\",\r\n  \"year\": 1965,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding \"The Ice Garden\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"The Ice Garden\",\r\n  \"author\": \"Jarosław Grzędowicz\",\r\n  \"year\": 2010,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adding \"Mistborn\"",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Mistborn\",\r\n  \"author\": \"Brandon Sanderson\",\r\n  \"year\": 2006,\r\n  \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ta-ebookrental-be-kodillaedu.replit.app/titles/",
+							"protocol": "https",
+							"host": [
+								"ta-ebookrental-be-kodillaedu",
+								"replit",
+								"app"
+							],
+							"path": [
+								"titles",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
